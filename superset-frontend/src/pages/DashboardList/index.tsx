@@ -643,7 +643,7 @@ function DashboardList(props: DashboardListProps) {
   if (canDelete || canExport) {
     subMenuButtons.push({
       name: t('Bulk select'),
-      buttonStyle: 'secondary',
+      buttonStyle: 'tertiary',
       'data-test': 'bulk-select',
       onClick: toggleBulkSelect,
     });
@@ -671,7 +671,7 @@ function DashboardList(props: DashboardListProps) {
           <Icons.Import data-test="import-button" />
         </Tooltip>
       ),
-      buttonStyle: 'link',
+      buttonStyle: 'icon-buton',
       onClick: openDashboardImportModal,
     });
   }

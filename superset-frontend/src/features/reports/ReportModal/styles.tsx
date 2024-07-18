@@ -117,7 +117,7 @@ export const antDErrorAlertStyles = (theme: SupersetTheme) => css`
   padding: ${theme.gridUnit * 4}px;
   margin: ${theme.gridUnit * 4}px;
   margin-top: 0;
-  color: ${theme.colors.error.dark2};
+  color: ${theme.colors.error.dark};
   .ant-alert-message {
     font-size: ${theme.typography.sizes.m}px;
     font-weight: bold;

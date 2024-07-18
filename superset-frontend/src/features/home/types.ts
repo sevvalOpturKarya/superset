@@ -40,11 +40,12 @@ export interface RightMenuProps {
   align: 'flex-start' | 'flex-end';
   settings: MenuObjectProps[];
   navbarRight: NavBarProps;
+  showSearch?: boolean;
   isFrontendRoute: (path?: string) => boolean;
-  environmentTag: {
-    text: string;
-    color: string;
-  };
+  // environmentTag: {
+  //   text: string;
+  //   color: string;
+  // };
 }
 
 export enum GlobalMenuDataOptions {

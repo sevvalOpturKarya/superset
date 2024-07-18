@@ -30,7 +30,7 @@ export type DateLabelProps = {
 
 // This is the color that antd components (such as Select or Input) use on hover
 // TODO: use theme.colors.primary.base here and in antd components
-const ACTIVE_BORDER_COLOR = '#45BED6';
+const ACTIVE_BORDER_COLOR = '#F800B5';
 
 const LabelContainer = styled.div<{
   isActive?: boolean;
@@ -46,18 +46,27 @@ const LabelContainer = styled.div<{
 
     padding: 0 ${theme.gridUnit * 3}px;
 
-    background-color: ${theme.colors.grayscale.light5};
+    background-color: ${theme.colors.background.bgWhite0};
 
     border: 1px solid
-      ${isActive ? ACTIVE_BORDER_COLOR : theme.colors.grayscale.light2};
-    border-radius: ${theme.borderRadius}px;
+      ${isActive ? ACTIVE_BORDER_COLOR : theme.colors.stroke.strokeSoft200};
+    border-radius: ${theme.borderRadius * 2}px;
 
     cursor: pointer;
 
     transition: border-color 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
-    :hover,
+    :hover{
+      border-color: none !important;
+      background-color: ${theme.colors.background.bgWeak100};
+      box-shadow: 0px 1px 2px 0px rgba(228, 229, 231, 0.24);
+    }
     :focus {
       border-color: ${ACTIVE_BORDER_COLOR};
+      box-shadow: 0px 0px 0px 3px rgba(248, 0, 181, 0.24);
+      box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
+      box-shadow: 0px 0px 0px 1px rgba(248, 0, 181, 1);
+      box-shadow: 0px 1px 2px 0px rgba(248, 0, 181, 0.35);
+
     }
 
     .date-label-content {

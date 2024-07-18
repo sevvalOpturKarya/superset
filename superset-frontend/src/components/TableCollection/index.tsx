@@ -38,7 +38,7 @@ export const Table = styled.table`
   ${({ theme }) => `
     background-color: ${theme.colors.grayscale.light5};
     border-collapse: separate;
-    border-radius: ${theme.borderRadius}px;
+    border-radius: ${theme.gridUnit * 2}px;
 
     thead > tr > th {
       border: 0;
@@ -50,10 +50,11 @@ export const Table = styled.table`
       }
     }
     th {
-      background: ${theme.colors.grayscale.light5};
+      //background: ${theme.colors.grayscale.light5};
       position: sticky;
       top: 0;
-
+      background-color: ${theme.colors.background.bgWeak100};
+      border-radius: ${theme.gridUnit * 2}px
       &:first-of-type {
         padding-left: ${theme.gridUnit * 4}px;
       }
@@ -81,12 +82,16 @@ export const Table = styled.table`
         white-space: nowrap;
         display: flex;
         align-items: center;
-        line-height: 2;
+        line-height: 20px;
+        font-weight: ${theme.typography.weights.normal};
+        font-size: ${theme.typography.sizes.m}px;
+        color: ${theme.colors.text.textSub500};
       }
 
       svg {
         display: inline-block;
         position: relative;
+        color: ${theme.colors.icon.iconSoft400};
       }
     }
 
@@ -186,6 +191,12 @@ export const Table = styled.table`
       }
       &__nowrap {
         white-space: nowrap;
+        a{
+          font-weight: ${theme.typography.weights.medium};
+          line-height: 20px;
+          font-size: ${theme.typography.sizes.m}px;
+          color: ${theme.colors.text.textColor900}
+        }
       }
     }
 

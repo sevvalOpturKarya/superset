@@ -36,10 +36,17 @@ const buttonStyles: ButtonStyleValue[] = [
   'tertiary',
   'dashed',
   'danger',
+  'danger-stroke',
+  'neutral',
+  'neutral-stroke',
   'warning',
   'success',
   'link',
   'default',
+  'link-black',
+  'link-gray',
+  'link-error',
+  'icon-buton',
 ];
 
 const buttonSizes: ButtonSizeValue[] = ['xsmall', 'small', 'default'];

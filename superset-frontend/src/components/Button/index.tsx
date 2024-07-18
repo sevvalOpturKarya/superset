@@ -34,9 +34,16 @@ export type ButtonStyle =
   | 'success'
   | 'warning'
   | 'danger'
+  | 'danger-stroke'
+  | 'neutral'
+  | 'neutral-stroke'
   | 'default'
   | 'link'
-  | 'dashed';
+  | 'dashed'
+  | 'link-black'
+  | 'link-gray'
+  | 'link-error'
+  | 'icon-buton';
 
 export type ButtonSize = 'default' | 'small' | 'xsmall';
 
@@ -67,24 +74,25 @@ export default function Button(props: ButtonProps) {
 
   const theme = useTheme();
   const { colors, transitionTiming, borderRadius, typography } = theme;
-  const { primary, grayscale, success, warning, error } = colors;
+  const { primary, grayscale, success, warning, error, background, neutral, text } = colors;
 
-  let height = 32;
-  let padding = 18;
+  let height = 40;
+  let padding = 10;
   if (buttonSize === 'xsmall') {
-    height = 22;
-    padding = 5;
+    height = 32;
+    padding = 6;
   } else if (buttonSize === 'small') {
-    height = 30;
-    padding = 10;
+    height = 36;
+    padding = 8;
   }
 
-  let backgroundColor = primary.light4;
-  let backgroundColorHover = mix(0.1, primary.base, primary.light4);
-  let backgroundColorActive = mix(0.25, primary.base, primary.light4);
-  let backgroundColorDisabled = grayscale.light2;
-  let color = primary.dark1;
+  let backgroundColor = background.bgWhite0;
+  let backgroundColorHover = mix(0.1, primary.base, primary.lighter);
+  let backgroundColorActive = mix(0.25, primary.base, background.bgWhite0);
+  let backgroundColorDisabled = background.bgWeak100;
+  let color = primary.base;
   let colorHover = color;
+  let colorActive = color;
   let borderWidth = 0;
   let borderStyle = 'none';
   let borderColor = 'transparent';
@@ -93,43 +101,92 @@ export default function Button(props: ButtonProps) {
 
   if (buttonStyle === 'primary') {
     backgroundColor = primary.base;
-    backgroundColorHover = primary.dark1;
-    backgroundColorActive = mix(0.2, grayscale.dark2, primary.dark1);
-    color = grayscale.light5;
+    backgroundColorHover = primary.dark;
+    backgroundColorActive = mix(0.2, grayscale.dark2, primary.dark);
+    backgroundColorDisabled = background.bgWeak100;
+    color = text.textWhite0;
     colorHover = color;
+    borderColorDisabled = background.bgWeak100;
   } else if (buttonStyle === 'tertiary' || buttonStyle === 'dashed') {
     backgroundColor = grayscale.light5;
-    backgroundColorHover = grayscale.light5;
+    backgroundColorHover = primary.lighter;
     backgroundColorActive = grayscale.light5;
-    backgroundColorDisabled = grayscale.light5;
-    borderWidth = 1;
+    backgroundColorDisabled = background.bgWeak100;
+    borderWidth = 2;
     borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';
-    borderColor = primary.dark1;
-    borderColorHover = primary.light1;
-    borderColorDisabled = grayscale.light2;
-  } else if (buttonStyle === 'danger') {
-    backgroundColor = error.base;
-    backgroundColorHover = mix(0.1, grayscale.light5, error.base);
-    backgroundColorActive = mix(0.2, grayscale.dark2, error.base);
-    color = grayscale.light5;
+    borderColor = primary.base;
+    borderColorHover = background.bgStrong900;
+    borderColorDisabled = background.bgWeak100;
+  } else if (buttonStyle === 'danger' || buttonStyle === 'danger-stroke') {
+    backgroundColor = buttonStyle === 'danger' ? error.base : grayscale.light5;
+    backgroundColorHover = buttonStyle === 'danger' ? error.dark : grayscale.light5;
+    backgroundColorActive = buttonStyle === 'danger' ? error.base : error.lighter;
+    backgroundColorDisabled = background.bgWeak100;
+    color = buttonStyle === 'danger' ? grayscale.light5 : error.base;
     colorHover = color;
+    borderWidth = 2;
+    borderStyle = 'dashed';
+    borderColor = buttonStyle === 'danger' ? 'none' : error.base;
+    borderColorDisabled = background.bgWeak100;
   } else if (buttonStyle === 'warning') {
     backgroundColor = warning.base;
     backgroundColorHover = mix(0.1, grayscale.dark2, warning.base);
     backgroundColorActive = mix(0.2, grayscale.dark2, warning.base);
+    backgroundColorDisabled = background.bgWeak100;
     color = grayscale.light5;
     colorHover = color;
+    borderColorDisabled = background.bgWeak100;
   } else if (buttonStyle === 'success') {
     backgroundColor = success.base;
     backgroundColorHover = mix(0.1, grayscale.light5, success.base);
     backgroundColorActive = mix(0.2, grayscale.dark2, success.base);
+    backgroundColorDisabled = background.bgWeak100;
     color = grayscale.light5;
     colorHover = color;
+    borderColorDisabled = background.bgWeak100;
+  } else if (buttonStyle === 'neutral' || buttonStyle === 'neutral-stroke') {
+    backgroundColor = buttonStyle === 'neutral' ? neutral.blueBlack900 : background.bgWhite0;
+    backgroundColorHover = buttonStyle === 'neutral' ? neutral.blueBlack800 : background.bgWeak100;
+    backgroundColorActive = buttonStyle === 'neutral' ? neutral.blueBlack900 : neutral.blueBlack100;
+    backgroundColorDisabled = background.bgWeak100;
+    color = buttonStyle === 'neutral' ? grayscale.light5 : text.textSub500;
+    colorHover = buttonStyle === 'neutral' ? grayscale.light5 : neutral.blueBlack900;
+    borderWidth = 2;
+    borderStyle = 'dashed';
+    borderColor = buttonStyle === 'neutral' ? 'none' : neutral.blueBlack900;
+    borderColorDisabled = background.bgWeak100;
   } else if (buttonStyle === 'link') {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
-    colorHover = primary.base;
+    color = primary.base;
+    colorHover = primary.dark;
+  } else if (buttonStyle === 'link-black') {
+    backgroundColor = 'transparent';
+    backgroundColorHover = 'transparent';
+    backgroundColorActive = 'transparent';
+    color = text.textColor900;
+    colorHover = color;
+  } else if (buttonStyle === 'link-gray') {
+    backgroundColor = 'transparent';
+    backgroundColorHover = 'transparent';
+    backgroundColorActive = 'transparent';
+    color = text.textSub500;
+    colorHover = color;
+    colorActive = text.textColor900;
+  } else if (buttonStyle === 'link-error') {
+    backgroundColor = 'transparent';
+    backgroundColorHover = 'transparent';
+    backgroundColorActive = 'transparent';
+    color = error.base;
+    colorHover = error.dark;
+  } else if (buttonStyle === 'icon-buton') {
+    backgroundColor = primary.base;
+    backgroundColorHover = primary.dark;
+    backgroundColorActive = primary.base;
+    backgroundColorDisabled = background.bgWeak100;
+    color = text.textWhite0;
+    colorHover = text.textWhite0;
   }
 
   const element = children as ReactElement;
@@ -160,11 +217,12 @@ export default function Button(props: ButtonProps) {
         alignItems: 'center',
         justifyContent: 'center',
         lineHeight: 1.5715,
-        fontSize: typography.sizes.s,
-        fontWeight: typography.weights.bold,
+        fontSize: typography.sizes.m,
+        fontWeight: typography.weights.medium,
         height,
-        textTransform: 'uppercase',
-        padding: `0px ${padding}px`,
+        textTransform: 'capitalize',
+        textDecoration: 'none',
+        padding: `${padding}px ${padding}px`,
         transition: `all ${transitionTiming}s`,
         minWidth: cta ? theme.gridUnit * 36 : undefined,
         minHeight: cta ? theme.gridUnit * 8 : undefined,
@@ -179,18 +237,30 @@ export default function Button(props: ButtonProps) {
           color: colorHover,
           backgroundColor: backgroundColorHover,
           borderColor: borderColorHover,
+          textDecoration: 
+            buttonStyle === 'link-error' || 
+            buttonStyle === 'link-black' || 
+            buttonStyle === 'link-gray' 
+              ? 'underline' 
+              : 'none',
         },
         '&:active': {
           color,
           backgroundColor: backgroundColorActive,
         },
         '&:focus': {
-          color,
+          color: colorActive,
           backgroundColor,
           borderColor,
+          textDecoration: 
+            buttonStyle === 'link-error' || 
+            buttonStyle === 'link-black' || 
+            buttonStyle === 'link-gray' 
+              ? 'underline' 
+              : 'none',
         },
         '&[disabled], &[disabled]:hover': {
-          color: grayscale.base,
+          color: text.textDisabled300,
           backgroundColor:
             buttonStyle === 'link' ? 'transparent' : backgroundColorDisabled,
           borderColor:

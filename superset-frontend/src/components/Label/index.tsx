@@ -24,6 +24,7 @@ export type OnClickHandler = React.MouseEventHandler<HTMLElement>;
 
 export type Type =
   | 'alert'
+  | 'away'
   | 'success'
   | 'warning'
   | 'danger'
@@ -47,6 +48,7 @@ export default function Label(props: LabelProps) {
   const { colors, transitionTiming } = theme;
   const { type = 'default', onClick, children, ...rest } = props;
   const {
+    away,
     alert,
     primary,
     secondary,
@@ -67,9 +69,9 @@ export default function Label(props: LabelProps) {
     color = grayscale.light4;
 
     let baseColor;
-    if (type === 'alert') {
+    if (type === 'away') {
       color = grayscale.dark1;
-      baseColor = alert;
+      baseColor = away;
     } else if (type === 'success') {
       baseColor = success;
     } else if (type === 'warning') {
@@ -78,16 +80,16 @@ export default function Label(props: LabelProps) {
       baseColor = error;
     } else if (type === 'info') {
       baseColor = info;
-    } else if (type === 'secondary') {
-      baseColor = secondary;
+    // } else if (type === 'secondary') {
+    //   baseColor = secondary;
     } else {
       baseColor = primary;
     }
 
     backgroundColor = baseColor.base;
-    backgroundColorHover = onClick ? baseColor.dark1 : baseColor.base;
-    borderColor = onClick ? baseColor.dark1 : 'transparent';
-    borderColorHover = onClick ? baseColor.dark2 : 'transparent';
+    backgroundColorHover = onClick ? baseColor.dark : baseColor.base;
+    borderColor = onClick ? baseColor.dark : 'transparent';
+    borderColorHover = onClick ? baseColor.dark : 'transparent';
   }
 
   return (

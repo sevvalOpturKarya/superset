@@ -172,8 +172,8 @@ const mockedProps = {
     ],
     brand: {
       path: '/superset/welcome/',
-      icon: '/static/assets/images/superset-logo-horiz.png',
-      alt: 'Superset',
+      icon: '/static/assets/images/main-logo.png',
+      alt: 'Creinda',
       width: '126',
       tooltip: '',
       text: '',

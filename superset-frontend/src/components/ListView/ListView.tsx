@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { t, styled } from '@superset-ui/core';
+import { t, styled, css, SupersetTheme, } from '@superset-ui/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Alert from 'src/components/Alert';
 import cx from 'classnames';
@@ -44,13 +44,17 @@ const ListViewStyles = styled.div`
 
   .superset-list-view {
     text-align: left;
-    border-radius: 4px 0;
+    //border-radius: 4px 0;
+    border-radius: ${({ theme }) => theme.gridUnit * 4}px;
     margin: 0 ${({ theme }) => theme.gridUnit * 4}px;
-
+    border: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200};
     .header {
       display: flex;
       padding-bottom: ${({ theme }) => theme.gridUnit * 4}px;
-
+      background-color: ${({ theme }) => theme.colors.background.bgWeak100};
+      border-bottom: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200}b;
+      padding: ${({ theme }) => theme.gridUnit * 3}px ${({ theme }) => theme.gridUnit * 4}px;
+      margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
       & .controls {
         display: flex;
         flex-wrap: wrap;
@@ -65,6 +69,7 @@ const ListViewStyles = styled.div`
 
     .body {
       overflow-x: auto;
+      padding: ${({ theme }) => theme.gridUnit * 3}px ${({ theme }) => theme.gridUnit * 4}px;
     }
 
     .ant-empty {
@@ -121,7 +126,54 @@ const BulkSelectWrapper = styled(Alert)`
     }
   `}
 `;
+const SidebarStyles = (theme: SupersetTheme) => css`
+  
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; 
 
+    &-icon{
+      display: flex;
+      justify-content: space-between;
+    }
+
+  .side-panel-content {
+    padding: 20px 24px;
+    flex-grow: 1;
+  }
+  .list{
+    width: 40px;
+    height: 40px;
+    background: #F6F8FA;
+    border: 6px solid #E2E4E859;
+    border-radius: 28px;
+    text-align: center;
+    span[role='img'] {
+      font-size: 20px !important;
+      padding: 4px;
+    }
+  }
+  .close {
+    position: absolute;
+    color: ${theme.colors.icon.iconSub500};
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .controls-button button {
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+`;
 const bulkSelectColumnConfig = {
   Cell: ({ row }: any) => (
     <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} id={row.id} />
@@ -317,6 +369,11 @@ function ListView<T extends object = any>({
   const cardViewEnabled = Boolean(renderCard);
   const [showBulkTagModal, setShowBulkTagModal] = useState<boolean>(false);
 
+  const [showPanel, setShowPanel] = useState(false);
+  const togglePanel = () => {
+    setShowPanel(!showPanel);
+  };
+
   useEffect(() => {
     // discard selections if bulk select is disabled
     if (!bulkSelectEnabled) toggleAllRowsSelected(false);
@@ -346,23 +403,41 @@ function ListView<T extends object = any>({
           {cardViewEnabled && (
             <ViewModeToggle mode={viewMode} setMode={setViewMode} />
           )}
-          <div className="controls">
-            {filterable && (
-              <FilterControls
-                ref={filterControlsRef}
-                filters={filters}
-                internalFilters={internalFilters}
-                updateFilterValue={applyFilterValue}
-              />
-            )}
-            {viewMode === 'card' && cardSortSelectOptions && (
-              <CardSortSelect
-                initialSort={sortBy}
-                onChange={(value: SortColumn[]) => setSortBy(value)}
-                options={cardSortSelectOptions}
-              />
-            )}
+          <div className="controls-button">
+            <button onClick={togglePanel}>
+              {showPanel ? 'Filtreleri Kapat' : 'Filtreleri Aç'}
+            </button>
           </div>
+          {showPanel && (
+            <div className="side-panel" css={SidebarStyles}>
+              <div className="side-panel-content">
+                <div className="side-panel-header">
+                  <div className="side-panel-icon">
+                    <span className="list"><Icons.List/></span>
+                    <span className="close" onClick={togglePanel}><Icons.Close/></span>
+                  </div>
+                </div>
+                <h2>Filtrele</h2>
+                <div className="controls">
+                  {filterable && (
+                    <FilterControls
+                      ref={filterControlsRef}
+                      filters={filters}
+                      internalFilters={internalFilters}
+                      updateFilterValue={applyFilterValue}
+                    />
+                  )}
+                  {viewMode === 'card' && cardSortSelectOptions && (
+                    <CardSortSelect
+                      initialSort={sortBy}
+                      onChange={(value: SortColumn[]) => setSortBy(value)}
+                      options={cardSortSelectOptions}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className={`body ${rows.length === 0 ? 'empty' : ''}`}>
           {bulkSelectEnabled && (

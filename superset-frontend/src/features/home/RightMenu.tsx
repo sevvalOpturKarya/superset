@@ -69,9 +69,9 @@ const StyledI = styled.div`
 `;
 
 const styledDisabled = (theme: SupersetTheme) => css`
-  color: ${theme.colors.grayscale.light1};
+  color: ${theme.colors.text.textSub500};
   .ant-menu-item-active {
-    color: ${theme.colors.grayscale.light1};
+    color: ${theme.colors.text.textSub500};
     cursor: default;
   }
 `;
@@ -84,6 +84,26 @@ const StyledDiv = styled.div<{ align: string }>`
   margin-right: ${({ theme }) => theme.gridUnit}px;
   .ant-menu-submenu-title > svg {
     top: ${({ theme }) => theme.gridUnit * 5.25}px;
+  }
+  .headerDropdown{
+    border: 1px solid #CDCDD3;
+    background: #fff;
+    border-radius: 8px;
+    margin: 0px 12px !important;
+    padding: 10px !important;
+    transition: none !important;
+    &:hover{
+      //color: ${({ theme }) => theme.colors.neutral.blueBlack900};
+      border: 1px solid ${({ theme }) => theme.colors.neutral.blueBlack900};
+      span{
+        color: ${({ theme }) => theme.colors.neutral.blueBlack900};
+      }
+      span[role='img'] {
+        svg {
+          color: ${({ theme }) => theme.colors.neutral.blueBlack900};
+        }
+      }
+    }
   }
 `;
 
@@ -105,11 +125,34 @@ const tagStyles = (theme: SupersetTheme) => css`
 
 const styledChildMenu = (theme: SupersetTheme) => css`
   &:hover {
-    color: ${theme.colors.primary.base} !important;
+    color: ${theme.colors.neutral.blueBlack900} !important;
     cursor: pointer !important;
   }
 `;
-
+const searchStyles = (theme: SupersetTheme) => css`
+  width: 300px;
+  height: 44px;
+  position: relative;
+  border: 1px solid ${theme.colors.stroke.strokeSoft200};
+  background-color: ${theme.colors.background.bgWhite0};
+  border-radius: 8px;
+  padding: 10px 12px;
+  span{
+    position: absolute;
+  }
+  input{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 30px;
+    line-height: 20px;
+  }
+  input::placeholder {
+    color: ${theme.colors.text.textSoft400};
+    font-size: ${theme.typography.sizes.m}px;
+    font-weight: ${theme.typography.weights.medium};
+  }
+`;
 const { SubMenu } = Menu;
 
 const RightMenu = ({
@@ -117,7 +160,8 @@ const RightMenu = ({
   settings,
   navbarRight,
   isFrontendRoute,
-  environmentTag,
+  showSearch = false, 
+  //environmentTag, //navbar üzerinde bulunan developer etiket alanı
   setQuery,
 }: RightMenuProps & {
   setQuery: ({
@@ -128,6 +172,10 @@ const RightMenu = ({
     datasetAdded?: boolean;
   }) => void;
 }) => {
+  const [searchVisible, setSearchVisible] = useState(showSearch);
+  useEffect(() => {
+    setSearchVisible(showSearch);
+  }, [showSearch]);
   const user = useSelector<any, UserWithPermissionsAndRoles>(
     state => state.user,
   );
@@ -383,7 +431,7 @@ const RightMenu = ({
           type="columnar"
         />
       )}
-      {environmentTag?.text && (
+      {/* {environmentTag?.text && (
         <Label
           css={{ borderRadius: `${theme.gridUnit * 125}px` }}
           color={
@@ -396,7 +444,13 @@ const RightMenu = ({
         >
           <span css={tagStyles}>{environmentTag.text}</span>
         </Label>
-      )}
+      )} */}
+       {searchVisible && 
+          <div className="search-container" css={searchStyles}>
+            <Icons.Search />
+            <input type="text" placeholder="Ara..." />
+          </div>
+        }
       <Menu
         selectable={false}
         mode="horizontal"
@@ -406,11 +460,13 @@ const RightMenu = ({
         {RightMenuExtension && <RightMenuExtension />}
         {!navbarRight.user_is_anonymous && showActionDropdown && (
           <SubMenu
+            className='headerDropdown'
+            icon={<Icons.PlusLarge />}
             data-test="new-dropdown"
-            title={
-              <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
+            title={t('Ekle')
+              // <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
             }
-            icon={<Icons.TriangleDown />}
+            
           >
             {dropdownItems?.map?.(menu => {
               const canShowChild = menu.childs?.some(
@@ -470,8 +526,16 @@ const RightMenu = ({
           </SubMenu>
         )}
         <SubMenu
-          title={t('Settings')}
-          icon={<Icons.TriangleDown iconSize="xl" />}
+          className='headerDropdown'
+          title={
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <Icons.SettingOutlined style={{ marginRight: 4 }} />
+              Settings
+              <Icons.DownOutlined style={{ marginLeft: 8 }} />
+            </span>
+          }
+          // title={t('Settings')}
+          // icon={<Icons.TriangleDown iconSize="xl" />}
         >
           {settings?.map?.((section, index) => [
             <Menu.ItemGroup key={`${section.label}`} title={section.label}>

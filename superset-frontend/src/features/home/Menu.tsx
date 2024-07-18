@@ -46,7 +46,7 @@ const StyledHeader = styled.header`
       background-color: ${theme.colors.grayscale.light5};
       margin-bottom: 2px;
       z-index: 10;
-
+      padding: 15px 20px;
       &:nth-last-of-type(2) nav {
         margin-bottom: 2px;
       }
@@ -101,10 +101,10 @@ const StyledHeader = styled.header`
           float: none;
         }
       }
-      .ant-menu-horizontal .ant-menu-item {
-        height: 100%;
-        line-height: inherit;
-      }
+      // .ant-menu-horizontal .ant-menu-item {
+      //   height: 100%;
+      //   line-height: inherit;
+      // }
       .ant-menu > .ant-menu-item > a {
         padding: ${theme.gridUnit * 4}px;
       }
@@ -137,6 +137,13 @@ const StyledHeader = styled.header`
             width: 100%;
           }
         }
+        &:focus {
+          color: ${theme.colors.grayscale.dark1};
+          background-color: ${theme.colors.primary.light5};
+        }
+        span{
+          margin-right: 0px;
+        }
       }
   `}
 `;
@@ -148,7 +155,8 @@ const globalStyles = (theme: SupersetTheme) => css`
     border-radius: 0px;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
-    height: 28px;
+    height: 45px;
+    padding: 0 10px !important;
     i {
       padding-right: ${theme.gridUnit * 2}px;
       margin-left: ${theme.gridUnit * 1.75}px;
@@ -166,15 +174,27 @@ const globalStyles = (theme: SupersetTheme) => css`
   }
   .ant-menu-horizontal > .ant-menu-item:has(> .is-active) {
     color: ${theme.colors.primary.base};
-    border-bottom-color: ${theme.colors.primary.base};
+    border-bottom: none !important;
     & > a {
+      color: ${theme.colors.text.textColor900};
+    }
+    & > span {
       color: ${theme.colors.primary.base};
     }
   }
   .ant-menu-vertical > .ant-menu-item:has(> .is-active) {
-    background-color: ${theme.colors.primary.light5};
+    background-color: ${theme.colors.background.bgWeak100};
     & > a {
       color: ${theme.colors.primary.base};
+    }
+  }
+  .ant-menu > .ant-menu-item-only-child{
+    &:hover{
+      color: ${theme.colors.text.textSub500} !important;
+      background-color: ${theme.colors.background.bgWeak100} !important;
+    }
+    & > a > i:hover{
+      color: ${theme.colors.primary.base} !important;
     }
   }
 `;
@@ -244,12 +264,16 @@ export function Menu({
     childs,
     url,
     index,
+    icon,
     isFrontendRoute,
   }: MenuObjectProps) => {
+    console.log("data",label)
     if (url && isFrontendRoute) {
       return (
         <DropdownMenu.Item key={label} role="presentation">
           <NavLink role="button" to={url} activeClassName="is-active">
+          {/* {icon && <Icons.CaretRightOutlined />}  */}
+           {/* {icon && <img src={icon} alt="Icon" />} */}
             {label}
           </NavLink>
         </DropdownMenu.Item>
@@ -258,46 +282,48 @@ export function Menu({
     if (url) {
       return (
         <DropdownMenu.Item key={label}>
+          {/* {icon && <Icons.CaretRightOutlined />}  */} {/* {icon && <img src={icon} alt="Icon" />} */}
           <a href={url}>{label}</a>
         </DropdownMenu.Item>
       );
     }
-    return (
-      <SubMenu
-        key={index}
-        title={label}
-        icon={showMenu === 'inline' ? <></> : <Icons.TriangleDown />}
-      >
-        {childs?.map((child: MenuObjectChildProps | string, index1: number) => {
-          if (typeof child === 'string' && child === '-' && label !== 'Data') {
-            return <DropdownMenu.Divider key={`$${index1}`} />;
-          }
-          if (typeof child !== 'string') {
-            return (
-              <DropdownMenu.Item key={`${child.label}`}>
-                {child.isFrontendRoute ? (
-                  <NavLink
-                    to={child.url || ''}
-                    exact
-                    activeClassName="is-active"
-                  >
-                    {child.label}
-                  </NavLink>
-                ) : (
-                  <a href={child.url}>{child.label}</a>
-                )}
-              </DropdownMenu.Item>
-            );
-          }
-          return null;
-        })}
-      </SubMenu>
-    );
+    return null;
+    // (
+    //   <SubMenu
+    //     key={index}
+    //     title={label}
+    //     icon={showMenu === 'inline' ? <></> : <Icons.TriangleDown />}
+    //   >
+    //     {childs?.map((child: MenuObjectChildProps | string, index1: number) => {
+    //       if (typeof child === 'string' && child === '-' && label !== 'Data') {
+    //         return <DropdownMenu.Divider key={`$${index1}`} />;
+    //       }
+    //       if (typeof child !== 'string') {
+    //         return (
+    //           <DropdownMenu.Item key={`${child.label}`}>
+    //             {child.isFrontendRoute ? (
+    //               <NavLink
+    //                 to={child.url || ''}
+    //                 exact
+    //                 activeClassName="is-active"
+    //               >
+    //                 {child.label}
+    //               </NavLink>
+    //             ) : (
+    //               <a href={child.url}>{child.label}</a>
+    //             )}
+    //           </DropdownMenu.Item>
+    //         );
+    //       }
+    //       return null;
+    //     })}
+    //   </SubMenu>
+    // );
   };
   return (
     <StyledHeader className="top" id="main-menu" role="navigation">
       <Global styles={globalStyles(theme)} />
-      <Row>
+      <Row> {/*gutter={[18, 18]}*/}
         <Col md={16} xs={24}>
           <Tooltip
             id="brand-tooltip"
@@ -319,11 +345,11 @@ export function Menu({
               </a>
             )}
           </Tooltip>
-          {brand.text && (
+          {/* {brand.text && (
             <div className="navbar-brand-text">
               <span>{brand.text}</span>
             </div>
-          )}
+          )} */}
           <DropdownMenu
             mode={showMenu}
             data-test="navbar-top"
@@ -354,10 +380,11 @@ export function Menu({
         <Col md={8} xs={24}>
           <RightMenu
             align={screens.md ? 'flex-end' : 'flex-start'}
+            showSearch={false} 
             settings={settings}
             navbarRight={navbarRight}
             isFrontendRoute={isFrontendRoute}
-            environmentTag={environmentTag}
+            // environmentTag={environmentTag}
           />
         </Col>
       </Row>

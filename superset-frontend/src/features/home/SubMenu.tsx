@@ -31,13 +31,14 @@ import { MenuObjectProps } from 'src/types/bootstrapTypes';
 const StyledHeader = styled.div`
   margin-bottom: ${({ theme }) => theme.gridUnit * 4}px;
   .header {
-    font-weight: ${({ theme }) => theme.typography.weights.bold};
+    font-weight: ${({ theme }) => theme.typography.weights.medium};
+    color: ${({ theme }) => theme.colors.text.textColor900};
     margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     text-align: left;
     font-size: 18px;
     padding: ${({ theme }) => theme.gridUnit * 3}px;
     display: inline-block;
-    line-height: ${({ theme }) => theme.gridUnit * 9}px;
+    line-height: ${({ theme }) => theme.gridUnit * 6}px;
   }
   .nav-right {
     display: flex;
@@ -87,6 +88,9 @@ const StyledHeader = styled.div`
     margin: 0 ${({ theme }) => theme.gridUnit + 1}px;
   }
 
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
+    border-bottom: none !important;
+  }
   .menu .ant-menu-item {
     li,
     div {
@@ -169,7 +173,7 @@ const styledDisabled = (theme: SupersetTheme) => css`
   }
 
   .ant-menu-item-selected {
-    background-color: ${theme.colors.grayscale.light1};
+    //background-color: ${theme.colors.grayscale.light1};
   }
 `;
 
@@ -193,7 +197,8 @@ export interface ButtonProps {
     | 'link'
     | 'warning'
     | 'success'
-    | 'tertiary';
+    | 'tertiary'
+    | 'icon-buton';
 }
 
 export interface SubMenuProps {

@@ -16,6 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* ant-menu-item > a
+ &:after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: all ${({ theme }) => theme.transitionTiming}s;
+        background-color: ${({ theme }) => theme.colors.primary.base};
+      }*/
 import { styled } from '@superset-ui/core';
 import { Menu as AntdMenu } from 'antd';
 import { MenuProps as AntdMenuProps } from 'antd/lib/menu';
@@ -59,24 +72,23 @@ const MenuItem = styled(AntdMenu.Item)`
   &.ant-menu-item {
     height: ${({ theme }) => theme.gridUnit * 8}px;
     line-height: ${({ theme }) => theme.gridUnit * 8}px;
+    &:active{
+      background: ${({ theme }) => theme.colors.background.bgWeak100} !important;
+    }
+    &:hover{
+      background-color: ${({ theme }) => theme.colors.background.bgWeak100};
+    }
     a {
+      color: ${({ theme }) => theme.colors.text.textSub500};
       border-bottom: none;
       transition: background-color ${({ theme }) => theme.transitionTiming}s;
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: -3px;
-        left: 50%;
-        width: 0;
-        height: 3px;
-        opacity: 0;
-        transform: translateX(-50%);
-        transition: all ${({ theme }) => theme.transitionTiming}s;
-        background-color: ${({ theme }) => theme.colors.primary.base};
-      }
+      font-size: ${({ theme }) => theme.typography.sizes.m}px;
+      font-weight: ${({ theme }) => theme.typography.weights.medium};
       &:focus {
+        color: ${({ theme }) => theme.colors.text.textColor900};
         border-bottom: none;
-        background-color: transparent;
+        //background-color: transparent;
+        background-color: ${({ theme }) => theme.colors.background.bgWeak100} !important;
         @media (max-width: 767px) {
           background-color: ${({ theme }) => theme.colors.primary.light5};
         }
@@ -95,12 +107,19 @@ const MenuItem = styled(AntdMenu.Item)`
 `;
 
 const StyledNav = styled(AntdMenu)`
-  line-height: 51px;
+  line-height: 20px;
   border: none;
 
   & > .ant-menu-item,
   & > .ant-menu-submenu {
     vertical-align: inherit;
+    // border: 1px solid #CDCDD3;
+    // background: #fff;
+    // border-radius: 8px;
+    // margin: 0px 12px !important;
+    // padding: 10px !important;
+    // //padding: 8px 12px;
+    // //margin-right: 4px;
     &:hover {
       color: ${({ theme }) => theme.colors.grayscale.dark1};
     }
@@ -119,7 +138,10 @@ const StyledNav = styled(AntdMenu)`
   }
 
   & > .ant-menu-item > a {
-    padding: ${({ theme }) => theme.gridUnit * 4}px;
+    display: flex;
+    align-items: center;
+    padding: 11px 16px!important;
+    
   }
 `;
 
@@ -128,46 +150,58 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
   border-bottom: none;
   .ant-menu-submenu-open,
   .ant-menu-submenu-active {
-    background-color: ${({ theme }) => theme.colors.primary.light5};
+    background-color: ${({ theme }) => theme.colors.background.bgWeak100};
+        padding: 10px 0 0 0;
     .ant-menu-submenu-title {
       color: ${({ theme }) => theme.colors.grayscale.dark1};
-      background-color: ${({ theme }) => theme.colors.primary.light5};
+      background-color: ${({ theme }) => theme.colors.background.bgWeak100};
       border-bottom: none;
       margin: 0;
       &:after {
         opacity: 1;
         width: calc(100% - 1);
       }
+      &:hover{
+        background-color: ${({ theme }) => theme.colors.background.bgWeak100} !important;
+      }
+      &:active,
+      &:focus{
+        background: ${({ theme }) => theme.colors.background.bgWeak100} !important;
+      }
     }
   }
   .ant-menu-submenu-title {
     position: relative;
     top: ${({ theme }) => -theme.gridUnit - 3}px;
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      opacity: 0;
-      transform: translateX(-50%);
-      transition: all ${({ theme }) => theme.transitionTiming}s;
-      background-color: ${({ theme }) => theme.colors.primary.base};
-    }
+    margin: 0 4px;
+    // &:after {
+    //   content: '';
+    //   position: absolute;
+    //   bottom: -3px;
+    //   left: 50%;
+    //   width: 0;
+    //   height: 3px;
+    //   opacity: 0;
+    //   transform: translateX(-50%);
+    //   transition: all ${({ theme }) => theme.transitionTiming}s;
+    //   background-color: ${({ theme }) => theme.colors.primary.base};
+    // }
   }
   .ant-menu-submenu-arrow {
-    top: 67%;
+    //top: 67%;
   }
   & > .ant-menu-submenu-title {
-    padding: 0 ${({ theme }) => theme.gridUnit * 6}px 0
-      ${({ theme }) => theme.gridUnit * 3}px !important;
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+    // padding: 0 ${({ theme }) => theme.gridUnit * 6}px 0
+    //   ${({ theme }) => theme.gridUnit * 3}px !important;
     span[role='img'] {
-      position: absolute;
-      right: ${({ theme }) => -theme.gridUnit + -2}px;
-      top: ${({ theme }) => theme.gridUnit * 5.25}px;
+      // position: absolute;
+      // right: ${({ theme }) => -theme.gridUnit + -2}px;
+      // top: ${({ theme }) => theme.gridUnit * 5.25}px;
       svg {
-        font-size: ${({ theme }) => theme.gridUnit * 6}px;
+        font-size: ${({ theme }) => theme.gridUnit * 5}px;
         color: ${({ theme }) => theme.colors.grayscale.base};
       }
     }
@@ -176,7 +210,7 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       top: 7px;
     }
     &:hover {
-      color: ${({ theme }) => theme.colors.primary.base};
+      color: ${({ theme }) => theme.colors.text.textColor900};
     }
   }
 `;

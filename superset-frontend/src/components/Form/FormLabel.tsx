@@ -27,16 +27,18 @@ export type FormLabelProps = {
 };
 
 const Label = styled.label`
-  text-transform: uppercase;
-  font-size: ${({ theme }) => theme.typography.sizes.s}px;
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  text-transform: capitalize;
+  font-size: ${({ theme }) => theme.typography.sizes.m}px;
+  font-weight: ${({ theme }) => theme.typography.weights.medium};
+  color: ${({ theme }) => theme.colors.text.textColor900};
   margin-bottom: ${({ theme }) => theme.gridUnit}px;
 `;
 
 const RequiredLabel = styled.label`
-  text-transform: uppercase;
-  font-size: ${({ theme }) => theme.typography.sizes.s}px;
-  color: ${({ theme }) => theme.colors.grayscale.base};
+  text-transform: capitalize;
+  font-size: ${({ theme }) => theme.typography.sizes.m}px;
+  font-weight: ${({ theme }) => theme.typography.weights.medium};
+  color: ${({ theme }) => theme.colors.text.textColor900};
   margin-bottom: ${({ theme }) => theme.gridUnit}px;
   &::after {
     display: inline-block;
