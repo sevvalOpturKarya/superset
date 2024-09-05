@@ -85,6 +85,9 @@ const StyledDiv = styled.div<{ align: string }>`
   .ant-menu-submenu-title > svg {
     top: ${({ theme }) => theme.gridUnit * 5.25}px;
   }
+  .ant-menu.ant-menu-horizontal{
+    display: inherit;
+  }
   .headerDropdown{
     border: 1px solid #CDCDD3;
     background: #fff;
@@ -463,7 +466,7 @@ const RightMenu = ({
             className='headerDropdown'
             icon={<Icons.PlusLarge />}
             data-test="new-dropdown"
-            title={t('Ekle')
+            title={t('Add')
               // <StyledI data-test="new-dropdown-icon" className="fa fa-plus" />
             }
             

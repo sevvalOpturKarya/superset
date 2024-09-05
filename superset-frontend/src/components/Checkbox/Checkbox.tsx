@@ -25,13 +25,50 @@ export interface CheckboxProps {
   onChange: (val?: boolean) => void;
   style?: React.CSSProperties;
   className?: string;
+  disabled?: boolean;
 }
 
-const Styles = styled.span`
+const Styles = styled.span<{ checked: boolean; disabled: boolean }>`
+  display: inline-block;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  border-radius: 2px;
+
   &,
   & svg {
     vertical-align: top;
   }
+
+  & svg:hover {
+   box-shadow: 0px 0px 0px 1px #CDD0D5;
+   box-shadow: 0px 1px 2px 0px #0A0D1466;
+  }
+
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0px 0px 0px 3px #f800b552, 0px 0px 0px 2px #ffffff,
+  //     0px 0px 0px 1px #f800b5, 0px 1px 2px 0px #f800b552,
+  //     0px 2px 2px 0px #ad007e14 inset;
+  // }
+
+  // &:active {
+  //   box-shadow: 0px 0px 0px 3px #f800b552, 0px 0px 0px 2px #ffffff,
+  //     0px 0px 0px 1px #f800b5, 0px 1px 2px 0px #f800b552;
+  // }
+
+  ${({ checked }) =>
+    checked &&
+    `
+    box-shadow: 0px 0px 0px 1px #f800b5, 0px 2px 2px 0px #00000014 inset;
+    background: #f800b5;
+  `}
+
+  ${({ disabled }) =>
+    disabled &&
+    `
+    box-shadow: 0px 2px 2px 0px #0f0f1014 inset;
+    border: 1px solid #f6f8fa;
+    background: #e2e4e8;
+  `}
 `;
 
 export default function Checkbox({
@@ -39,18 +76,22 @@ export default function Checkbox({
   onChange,
   style,
   className,
+  disabled = false,
 }: CheckboxProps) {
   return (
     <Styles
       style={style}
       onClick={() => {
-        onChange(!checked);
+        if (!disabled) onChange(!checked);
       }}
       role="checkbox"
       tabIndex={0}
       aria-checked={checked}
       aria-label="Checkbox"
+      aria-disabled={disabled}
       className={className || ''}
+      checked={checked}
+      disabled={disabled}
     >
       {checked ? <CheckboxChecked /> : <CheckboxUnchecked />}
     </Styles>

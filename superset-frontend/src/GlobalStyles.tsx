@@ -25,6 +25,18 @@ import 'react-js-cron/dist/styles.css';
 export const GlobalStyles = () => (
   <Global
     styles={theme => css`
+      ::-webkit-scrollbar {
+        width: 6px; 
+        height: 6px; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: 2px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: ${theme.colors.stroke.strokeSoft200};
+        border-radius: 2px;
+      }
       h1,
       h2,
       h3,

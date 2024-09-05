@@ -43,11 +43,11 @@ const StyledHeader = styled.div`
   .nav-right {
     display: flex;
     align-items: center;
-    padding: ${({ theme }) => theme.gridUnit * 3.5}px 0;
-    margin-right: ${({ theme }) => theme.gridUnit * 3}px;
-    float: right;
-    position: absolute;
-    right: 0;
+    //padding: ${({ theme }) => theme.gridUnit * 3.5}px 0;
+    //margin-right: ${({ theme }) => theme.gridUnit * 3}px;
+    //float: right;
+    //position: absolute;
+    //right: 0;
     ul.ant-menu-root {
       padding: 0px;
     }
@@ -66,6 +66,11 @@ const StyledHeader = styled.div`
     margin-right: 0;
     float: left;
     padding-left: 10px;
+  }
+  div[role="navigation"].ant-row.menu {
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 32px 20px 10px;
   }
   .menu {
     background-color: ${({ theme }) => theme.colors.grayscale.light5};
@@ -88,7 +93,8 @@ const StyledHeader = styled.div`
     margin: 0 ${({ theme }) => theme.gridUnit + 1}px;
   }
 
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item.ant-menu-item-selected,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item.ant-menu-item-selected a::before {
     border-bottom: none !important;
   }
   .menu .ant-menu-item {

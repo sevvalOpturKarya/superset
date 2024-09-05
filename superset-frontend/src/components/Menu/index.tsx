@@ -140,7 +140,7 @@ const StyledNav = styled(AntdMenu)`
   & > .ant-menu-item > a {
     display: flex;
     align-items: center;
-    padding: 11px 16px!important;
+    padding: 0px ${({ theme }) => theme.gridUnit * 4}px!important;
     
   }
 `;
@@ -171,9 +171,9 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
     }
   }
   .ant-menu-submenu-title {
-    position: relative;
-    top: ${({ theme }) => -theme.gridUnit - 3}px;
-    margin: 0 4px;
+    //position: relative;
+    //top: ${({ theme }) => -theme.gridUnit - 3}px;
+    //margin: 0 4px;
     // &:after {
     //   content: '';
     //   position: absolute;
@@ -193,7 +193,6 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
   & > .ant-menu-submenu-title {
     display: flex;
     align-items: center;
-    padding: 0 !important;
     // padding: 0 ${({ theme }) => theme.gridUnit * 6}px 0
     //   ${({ theme }) => theme.gridUnit * 3}px !important;
     span[role='img'] {
@@ -206,8 +205,9 @@ const StyledSubMenu = styled(AntdMenu.SubMenu)`
       }
     }
     & > span {
-      position: relative;
-      top: 7px;
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
     }
     &:hover {
       color: ${({ theme }) => theme.colors.text.textColor900};

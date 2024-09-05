@@ -84,7 +84,7 @@ export const Table = styled.table`
         align-items: center;
         line-height: 20px;
         font-weight: ${theme.typography.weights.normal};
-        font-size: ${theme.typography.sizes.m}px;
+        font-size: ${theme.typography.sizes.s}px;
         color: ${theme.colors.text.textSub500};
       }
 
@@ -153,7 +153,7 @@ export const Table = styled.table`
 
     .table-row {
       .actions {
-        opacity: 0;
+        //opacity: 0;
         font-size: ${theme.typography.sizes.xl}px;
         display: flex;
       }
@@ -191,11 +191,15 @@ export const Table = styled.table`
       }
       &__nowrap {
         white-space: nowrap;
-        a{
-          font-weight: ${theme.typography.weights.medium};
+        font-weight: ${theme.typography.weights.normal};
+        line-height: 20px;
+        font-size: ${theme.typography.sizes.s}px;
+        color: ${theme.colors.text.textColor900};
+        span a{
+          font-weight: ${theme.typography.weights.normal};
           line-height: 20px;
-          font-size: ${theme.typography.sizes.m}px;
-          color: ${theme.colors.text.textColor900}
+          font-size: ${theme.typography.sizes.s}px;
+          color: ${theme.colors.text.textColor900};
         }
       }
     }

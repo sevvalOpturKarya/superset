@@ -412,7 +412,7 @@ function DashboardList(props: DashboardListProps) {
                         className="action-button"
                         onClick={confirmDelete}
                       >
-                        <Icons.Trash data-test="dashboard-list-trash-icon" />
+                        <Icons.DeleteBinAbra data-test="dashboard-list-trash-icon" />
                       </span>
                     </Tooltip>
                   )}
@@ -430,7 +430,7 @@ function DashboardList(props: DashboardListProps) {
                     className="action-button"
                     onClick={handleExport}
                   >
-                    <Icons.Share />
+                    <Icons.DownloadAbra />
                   </span>
                 </Tooltip>
               )}
@@ -446,7 +446,7 @@ function DashboardList(props: DashboardListProps) {
                     className="action-button"
                     onClick={handleEdit}
                   >
-                    <Icons.EditAlt data-test="edit-alt" />
+                    <Icons.PencilAbra data-test="edit-alt" />
                   </span>
                 </Tooltip>
               )}

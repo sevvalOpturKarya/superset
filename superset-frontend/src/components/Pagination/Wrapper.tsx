@@ -29,25 +29,44 @@ interface PaginationProps {
 }
 
 const PaginationList = styled.ul`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   margin: 16px 0;
   padding: 0;
 
   li {
     display: inline;
     margin: 0 4px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
 
     span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
       padding: 8px 12px;
       text-decoration: none;
       background-color: ${({ theme }) => theme.colors.grayscale.light5};
       border-radius: ${({ theme }) => theme.borderRadius}px;
 
+      &.number {
+        color:background: ${({ theme }) => theme.colors.text.textColor900};
+        box-shadow: 0px 1px 2px 0px #E4E5E73D;
+        border: 1px solid var(--stroke-soft, ${({ theme }) => theme.colors.stroke.strokeSoft200});
+        &:hover{
+          background-color: ${({ theme }) => theme.colors.background.bgWeak100};
+        }
+      }
+
       &:hover,
       &:focus {
         z-index: 2;
         color: ${({ theme }) => theme.colors.grayscale.dark1};
-        background-color: ${({ theme }) => theme.colors.grayscale.light3};
+        border: none;
       }
     }
 
@@ -66,8 +85,14 @@ const PaginationList = styled.ul`
         z-index: 3;
         color: ${({ theme }) => theme.colors.grayscale.light5};
         cursor: default;
-        background-color: ${({ theme }) => theme.colors.primary.base};
+        //background-color: ${({ theme }) => theme.colors.primary.base};
 
+        &.number {
+          color: ${({ theme }) => theme.colors.text.textColor900};
+          box-shadow: 0px 1px 2px 0px #E4E5E73D;
+          background: ${({ theme }) => theme.colors.background.bgWeak100};
+          border: 1px solid var(--stroke-soft, ${({ theme }) => theme.colors.stroke.strokeSoft200});
+        }
         &:focus {
           outline: none;
         }

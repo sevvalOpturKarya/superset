@@ -30,6 +30,7 @@ export function Item({ active, children, onClick }: PaginationItemButton) {
   return (
     <li className={classNames({ active })}>
       <span
+        className="number"
         role="button"
         tabIndex={active ? -1 : 0}
         onClick={e => {

@@ -50,11 +50,14 @@ const ListViewStyles = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200};
     .header {
       display: flex;
+      justify-content: flex-end;
+      align-items: center;
       padding-bottom: ${({ theme }) => theme.gridUnit * 4}px;
       background-color: ${({ theme }) => theme.colors.background.bgWeak100};
       border-bottom: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200}b;
       padding: ${({ theme }) => theme.gridUnit * 3}px ${({ theme }) => theme.gridUnit * 4}px;
       margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
+      border-radius: 16px 16px 0 0;
       & .controls {
         display: flex;
         flex-wrap: wrap;
@@ -131,7 +134,7 @@ const SidebarStyles = (theme: SupersetTheme) => css`
     position: fixed;
     top: 0;
     right: 0;
-    width: 300px;
+    width: 396px;
     height: 100%;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0,0,0,0.5);
@@ -139,15 +142,16 @@ const SidebarStyles = (theme: SupersetTheme) => css`
     flex-direction: column;
     z-index: 1000; 
 
-    &-icon{
-      display: flex;
-      justify-content: space-between;
-    }
-
   .side-panel-content {
     padding: 20px 24px;
     flex-grow: 1;
   }
+  .side-panel-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .list{
     width: 40px;
     height: 40px;
@@ -161,17 +165,32 @@ const SidebarStyles = (theme: SupersetTheme) => css`
     }
   }
   .close {
-    position: absolute;
+    //position: absolute;
     color: ${theme.colors.icon.iconSub500};
-    top: 10px;
-    right: 10px;
+    //top: 10px;
+    //right: 10px;
     font-size: 20px;
     cursor: pointer;
   }
-
-  .controls-button button {
-    padding: 10px 20px;
-    cursor: pointer;
+  .side-panel-header-text{
+    position: relative;o
+  }
+  .side-panel-header-text::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -25px; 
+    width: calc(100% + 50px);
+    height: 1px;
+    background-color: ${theme.colors.stroke.strokeSoft200}; 
+    margin: 24px 0;
+  }
+  .controls-button 
+    margin-right: 12px;
+    &.button {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
   }
 `;
 const bulkSelectColumnConfig = {
@@ -189,8 +208,8 @@ const bulkSelectColumnConfig = {
 };
 
 const ViewModeContainer = styled.div`
-  padding-right: ${({ theme }) => theme.gridUnit * 4}px;
-  margin-top: ${({ theme }) => theme.gridUnit * 5 + 1}px;
+  //padding-right: ${({ theme }) => theme.gridUnit * 4}px;
+  //margin-top: ${({ theme }) => theme.gridUnit * 5 + 1}px;
   white-space: nowrap;
   display: inline-block;
 
@@ -400,14 +419,14 @@ function ListView<T extends object = any>({
       )}
       <div data-test={className} className={`superset-list-view ${className}`}>
         <div className="header">
+          <div className="controls-button">
+            <Button onClick={togglePanel} buttonStyle={'neutral-stroke'}>
+              <Icons.FilterAbra /> {t('Filtrele')}
+            </Button>
+          </div>
           {cardViewEnabled && (
             <ViewModeToggle mode={viewMode} setMode={setViewMode} />
           )}
-          <div className="controls-button">
-            <button onClick={togglePanel}>
-              {showPanel ? 'Filtreleri Kapat' : 'Filtreleri Aç'}
-            </button>
-          </div>
           {showPanel && (
             <div className="side-panel" css={SidebarStyles}>
               <div className="side-panel-content">
@@ -417,7 +436,10 @@ function ListView<T extends object = any>({
                     <span className="close" onClick={togglePanel}><Icons.Close/></span>
                   </div>
                 </div>
-                <h2>Filtrele</h2>
+                <div className="side-panel-header-text">
+                  <h4>Filtrele</h4>
+                  <p>Please insert modal description here.</p>
+                </div>
                 <div className="controls">
                   {filterable && (
                     <FilterControls

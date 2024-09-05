@@ -53,6 +53,10 @@ const StyledHeader = styled.header`
       .caret {
         display: none;
       }
+      .left-menu{
+        display: flex;
+        align-items: center;
+      }
       .navbar-brand {
         display: flex;
         flex-direction: column;
@@ -128,8 +132,9 @@ const StyledHeader = styled.header`
       }
       .ant-menu-item a {
         &:hover {
-          color: ${theme.colors.grayscale.dark1};
-          background-color: ${theme.colors.primary.light5};
+          color: ${theme.colors.text.textSub500};
+          background-color: ${theme.colors.background.bgWeak100};
+          //border-radius: 6px;
           border-bottom: none;
           margin: 0;
           &:after {
@@ -138,8 +143,9 @@ const StyledHeader = styled.header`
           }
         }
         &:focus {
-          color: ${theme.colors.grayscale.dark1};
-          background-color: ${theme.colors.primary.light5};
+          color: ${theme.colors.text.textColor900};
+          border-radius: 6px;
+          background-color: ${theme.colors.background.bgWhite0};
         }
         span{
           margin-right: 0px;
@@ -155,11 +161,9 @@ const globalStyles = (theme: SupersetTheme) => css`
     border-radius: 0px;
   }
   .ant-menu-vertical > .ant-menu-submenu.data-menu > .ant-menu-submenu-title {
-    height: 45px;
-    padding: 0 10px !important;
     i {
       padding-right: ${theme.gridUnit * 2}px;
-      margin-left: ${theme.gridUnit * 1.75}px;
+      //margin-left: ${theme.gridUnit * 1.75}px;
     }
   }
   .ant-menu-item-selected {
@@ -324,7 +328,7 @@ export function Menu({
     <StyledHeader className="top" id="main-menu" role="navigation">
       <Global styles={globalStyles(theme)} />
       <Row> {/*gutter={[18, 18]}*/}
-        <Col md={16} xs={24}>
+        <Col md={16} xs={24} className="left-menu">
           <Tooltip
             id="brand-tooltip"
             placement="bottomLeft"

@@ -47,6 +47,7 @@ export interface ModalProps {
   onHandledPrimaryAction?: () => void;
   primaryButtonName?: string;
   primaryButtonType?: 'primary' | 'danger';
+  neutralStrokeType?: 'neutral-stroke' | 'primary';
   show: boolean;
   name?: string;
   title: ReactNode;
@@ -105,20 +106,22 @@ export const StyledModal = styled(BaseModal)<StyledModalProps>`
     `}
 
   .ant-modal-content {
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     max-height: ${({ theme }) => `calc(100vh - ${theme.gridUnit * 8}px)`};
     margin-bottom: ${({ theme }) => theme.gridUnit * 4}px;
     margin-top: ${({ theme }) => theme.gridUnit * 4}px;
+    box-shadow: 0px 16px 32px -12px #585C5F1A;
   }
 
   .ant-modal-header {
     flex: 0 0 auto;
-    background-color: ${({ theme }) => theme.colors.grayscale.light4};
-    border-radius: ${({ theme }) => theme.borderRadius}px
-      ${({ theme }) => theme.borderRadius}px 0 0;
+    background-color: ${({ theme }) => theme.colors.grayscale.light5};
+    border-radius: ${({ theme }) => theme.borderRadius * 3}px;
     padding-left: ${({ theme }) => theme.gridUnit * 4}px;
     padding-right: ${({ theme }) => theme.gridUnit * 4}px;
+    border-bottom: none;
 
     .ant-modal-title h4 {
       display: flex;
@@ -239,6 +242,7 @@ const CustomModal = ({
   onHandledPrimaryAction,
   primaryButtonName = t('OK'),
   primaryButtonType = 'primary',
+  neutralStrokeType= 'neutral-stroke',
   show,
   name,
   title,
@@ -269,7 +273,7 @@ const CustomModal = ({
   }
   const modalFooter = isNil(FooterComponent)
     ? [
-        <Button key="back" onClick={onHide} cta data-test="modal-cancel-button">
+        <Button key="back" buttonStyle='neutral-stroke' onClick={onHide} cta data-test="modal-cancel-button">
           {t('Cancel')}
         </Button>,
         <Button
