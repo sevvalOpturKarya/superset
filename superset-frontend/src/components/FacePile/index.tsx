@@ -31,7 +31,7 @@ interface FacePileProps {
   maxCount?: number;
 }
 
-const colorList = getCategoricalSchemeRegistry().get()?.colors ?? [];
+//const colorList = getCategoricalSchemeRegistry().get()?.colors ?? [];
 
 const customAvatarStyler = (theme: SupersetTheme) => {
   const size = theme.gridUnit * 8;
@@ -50,6 +50,7 @@ const StyledAvatar = styled(Avatar)`
 const StyledGroup = styled(Avatar.Group)`
   .ant-avatar {
     ${({ theme }) => customAvatarStyler(theme)}
+    color: ${({ theme }) => theme.colors.text.textSub500};
   }
 `;
 
@@ -58,16 +59,18 @@ export default function FacePile({ users, maxCount = 4 }: FacePileProps) {
     <StyledGroup maxCount={maxCount}>
       {users.map(({ first_name, last_name, id }) => {
         const name = `${first_name} ${last_name}`;
-        const uniqueKey = `${id}-${first_name}-${last_name}`;
-        const color = getRandomColor(uniqueKey, colorList);
+        //const uniqueKey = `${id}-${first_name}-${last_name}`;
+        // const color = getRandomColor(uniqueKey, colorList);
+        const borderColor = `#E2E4E8`;
+        const backgroundColor = `#F6F8FA`;
         const avatarUrl = `/api/v1/user/${id}/avatar.png`;
         return (
           <Tooltip key={name} title={name} placement="top">
             <StyledAvatar
               key={name}
               style={{
-                backgroundColor: color,
-                borderColor: color,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
               }}
               src={avatarUrl}
             >

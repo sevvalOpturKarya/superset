@@ -41,6 +41,9 @@ export const Tooltip = (props: TooltipProps) => {
               display: block;
             }
           }
+          .ant-tooltip-inner{
+            border-radius: 6px;
+          }
           .ant-tooltip-inner > p {
             margin: 0;
           }
@@ -55,7 +58,7 @@ export const Tooltip = (props: TooltipProps) => {
           WebkitBoxOrient: 'vertical',
           textOverflow: 'ellipsis',
         }}
-        color={`${theme.colors.grayscale.dark2}e6`}
+        color={`${theme.colors.background.bgSurface700}`}
         {...props}
       />
     </>

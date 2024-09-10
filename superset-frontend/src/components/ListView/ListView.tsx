@@ -64,6 +64,15 @@ const ListViewStyles = styled.div`
         column-gap: ${({ theme }) => theme.gridUnit * 6}px;
         row-gap: ${({ theme }) => theme.gridUnit * 4}px;
       }
+      .controls-button {
+        margin-right: 12px;
+
+        span svg {
+          position: relative;
+          top: 9px;
+          left: 10px;
+        }
+      }
     }
 
     .body.empty table {
@@ -185,13 +194,13 @@ const SidebarStyles = (theme: SupersetTheme) => css`
     background-color: ${theme.colors.stroke.strokeSoft200}; 
     margin: 24px 0;
   }
-  .controls-button 
-    margin-right: 12px;
-    &.button {
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-  }
+  // .controls-button 
+  //   margin-right: 12px;
+  //   &.button {
+  //     padding: 10px 20px;
+  //     cursor: pointer;
+  //   }
+  // }
 `;
 const bulkSelectColumnConfig = {
   Cell: ({ row }: any) => (
@@ -218,6 +227,7 @@ const ViewModeContainer = styled.div`
     border-radius: ${({ theme }) => theme.gridUnit / 2}px;
     padding: ${({ theme }) => theme.gridUnit}px;
     padding-bottom: ${({ theme }) => theme.gridUnit * 0.5}px;
+    border: 1px solid ${({ theme }) => theme.colors.grayscale.base};
 
     &:first-of-type {
       margin-right: ${({ theme }) => theme.gridUnit * 2}px;
@@ -226,6 +236,7 @@ const ViewModeContainer = styled.div`
 
   .active {
     background-color: ${({ theme }) => theme.colors.grayscale.base};
+    border: none;
     svg {
       color: ${({ theme }) => theme.colors.grayscale.light5};
     }
