@@ -87,15 +87,15 @@ export default function Button(props: ButtonProps) {
   }
 
   let backgroundColor = background.bgWhite0;
-  let backgroundColorHover = mix(0.1, primary.base, primary.lighter);
-  let backgroundColorActive = mix(0.25, primary.base, background.bgWhite0);
+  let backgroundColorHover = mix(0.1, background.bgSoft200, background.bgSoft200);
+  let backgroundColorActive = mix(0.25, background.bgSoft200, background.bgWhite0);
   let backgroundColorDisabled = background.bgWeak100;
-  let color = primary.base;
+  let color = text.textSub500;
   let colorHover = color;
   let colorActive = color;
-  let borderWidth = 0;
-  let borderStyle = 'none';
-  let borderColor = 'transparent';
+  let borderWidth = 1;
+  let borderStyle = 'solid';
+  let borderColor = background.bgSoft200;
   let borderColorHover = 'transparent';
   let borderColorDisabled = 'transparent';
 
@@ -108,13 +108,16 @@ export default function Button(props: ButtonProps) {
     colorActive = text.textWhite0;
     colorHover = color;
     borderColorDisabled = background.bgWeak100;
-  } else if (buttonStyle === 'tertiary' || buttonStyle === 'dashed') {
+  } else if (buttonStyle === 'tertiary' || buttonStyle === 'secondary') {
+    color = primary.base;
+    colorActive = color;
+    colorHover = color;
     backgroundColor = grayscale.light5;
     backgroundColorHover = primary.lighter;
     backgroundColorActive = grayscale.light5;
     backgroundColorDisabled = background.bgWeak100;
     borderWidth = 1;
-    borderStyle = buttonStyle === 'dashed' ? 'dashed' : 'solid';
+    borderStyle = 'solid';
     borderColor = primary.base;
     borderColorHover = background.bgStrong900;
     borderColorDisabled = background.bgWeak100;
@@ -127,7 +130,7 @@ export default function Button(props: ButtonProps) {
     colorHover = color;
     colorActive = buttonStyle === 'danger' ? grayscale.light5 : error.base;
     borderWidth = 1;
-    borderStyle = 'dashed';
+    borderStyle = 'solid';
     borderColor = buttonStyle === 'danger' ? 'none' : error.base;
     borderColorDisabled = background.bgWeak100;
   } else if (buttonStyle === 'warning') {
@@ -172,6 +175,7 @@ export default function Button(props: ButtonProps) {
     backgroundColorActive = 'transparent';
     color = text.textColor900;
     colorHover = color;
+    colorActive = text.textColor900;
   } else if (buttonStyle === 'link-gray') {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
@@ -185,6 +189,7 @@ export default function Button(props: ButtonProps) {
     backgroundColorActive = 'transparent';
     color = error.base;
     colorHover = error.dark;
+    colorActive = error.base;
   } else if (buttonStyle === 'icon-buton') {
     backgroundColor = primary.base;
     backgroundColorHover = primary.dark;

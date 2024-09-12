@@ -473,7 +473,7 @@ const PropertiesModal = ({
     return (
       <Row gutter={16}>
         <Col xs={24} md={12}>
-          <h3 style={{ marginTop: '1em' }}>{t('Access')}</h3>
+          <h4 style={{ marginTop: '1em' }}>{t('Access')}</h4>
           <StyledFormItem label={t('Owners')}>
             <AsyncSelect
               allowClear
@@ -494,7 +494,7 @@ const PropertiesModal = ({
           </p>
         </Col>
         <Col xs={24} md={12}>
-          <h3 style={{ marginTop: '1em' }}>{t('Colors')}</h3>
+          <h4 style={{ marginTop: '1em' }}>{t('Colors')}</h4>
           <ColorSchemeControlWrapper
             hasCustomLabelColors={hasCustomLabelColors}
             onChange={onColorSchemeChange}
@@ -676,7 +676,7 @@ const PropertiesModal = ({
       >
         <Row>
           <Col xs={24} md={24}>
-            <h3>{t('Basic information')}</h3>
+            <h4>{t('Basic information')}</h4>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -703,7 +703,7 @@ const PropertiesModal = ({
           : getRowsWithoutRoles()}
         <Row>
           <Col xs={24} md={24}>
-            <h3>{t('Certification')}</h3>
+            <h4>{t('Certification')}</h4>
           </Col>
         </Row>
         <Row gutter={16}>
@@ -757,7 +757,7 @@ const PropertiesModal = ({
           <Col xs={24} md={24}>
             <h3 style={{ marginTop: '1em' }}>
               <Button
-                buttonStyle="link"
+                buttonStyle="link-black"
                 onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
               >
                 <i

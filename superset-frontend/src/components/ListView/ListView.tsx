@@ -184,13 +184,12 @@ const SidebarStyles = (theme: SupersetTheme) => css`
   .side-panel-header-text{
     position: relative;o
   }
-  .side-panel-header-text::after{
+  .side-panel-header-text hr{
     content: "";
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: -25px; 
     width: calc(100% + 50px);
-    height: 1px;
     background-color: ${theme.colors.stroke.strokeSoft200}; 
     margin: 24px 0;
   }
@@ -450,6 +449,7 @@ function ListView<T extends object = any>({
                 <div className="side-panel-header-text">
                   <h4>Filtrele</h4>
                   <p>Please insert modal description here.</p>
+                  <hr/>
                 </div>
                 <div className="controls">
                   {filterable && (
