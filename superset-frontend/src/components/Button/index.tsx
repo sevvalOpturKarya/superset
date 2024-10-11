@@ -167,12 +167,16 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
+    borderWidth = 0;
+    borderStyle = 'none';
     color = primary.base;
     colorHover = primary.dark;
   } else if (buttonStyle === 'link-black') {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
+    borderWidth = 0;
+    borderStyle = 'none';
     color = text.textColor900;
     colorHover = color;
     colorActive = text.textColor900;
@@ -180,6 +184,8 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
+    borderWidth = 0;
+    borderStyle = 'none';
     color = text.textSub500;
     colorHover = color;
     colorActive = text.textColor900;
@@ -187,6 +193,8 @@ export default function Button(props: ButtonProps) {
     backgroundColor = 'transparent';
     backgroundColorHover = 'transparent';
     backgroundColorActive = 'transparent';
+    borderWidth = 0;
+    borderStyle = 'none';
     color = error.base;
     colorHover = error.dark;
     colorActive = error.base;
@@ -195,6 +203,8 @@ export default function Button(props: ButtonProps) {
     backgroundColorHover = primary.dark;
     backgroundColorActive = primary.base;
     backgroundColorDisabled = background.bgWeak100;
+    borderWidth = 0;
+    borderStyle = 'none';
     color = text.textWhite0;
     colorHover = text.textWhite0;
   }

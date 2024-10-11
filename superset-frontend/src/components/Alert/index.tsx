@@ -37,7 +37,7 @@ export default function Alert(props: AlertProps) {
 
   const theme = useTheme();
   const { colors, typography, gridUnit } = theme;
-  const { alert, error, info, success } = colors;
+  const { warning, error, info, success } = colors;
 
   let baseColor = info;
   let AlertIcon = Icons.InfoSolid;
@@ -45,7 +45,7 @@ export default function Alert(props: AlertProps) {
     baseColor = error;
     AlertIcon = Icons.ErrorSolid;
   } else if (type === 'warning') {
-    baseColor = alert;
+    baseColor = warning;
     AlertIcon = Icons.AlertSolid;
   } else if (type === 'success') {
     baseColor = success;
@@ -63,19 +63,20 @@ export default function Alert(props: AlertProps) {
         padding: `${gridUnit * 2}px ${gridUnit * 3}px`,
         alignItems: 'flex-start',
         border: 0,
-        backgroundColor: baseColor.light2,
+        borderRadius: `6px`,
+        backgroundColor: baseColor.lighter,
         '& .ant-alert-icon': {
           marginRight: gridUnit * 2,
         },
         '& .ant-alert-message': {
-          color: baseColor.dark2,
+          color: baseColor.darker,
           fontSize: typography.sizes.m,
           fontWeight: description
             ? typography.weights.bold
             : typography.weights.normal,
         },
         '& .ant-alert-description': {
-          color: baseColor.dark2,
+          color: baseColor.darker,
           fontSize: typography.sizes.m,
         },
       }}

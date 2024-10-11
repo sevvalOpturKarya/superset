@@ -22,6 +22,10 @@ import { Input as AntdInput, InputNumber as AntdInputNumber } from 'antd';
 export const Input = styled(AntdInput)`
   border: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200} !important;
   border-radius: ${({ theme }) => theme.borderRadius * 2}px;
+  &:hover {
+    background: ${({ theme }) => theme.colors.background.bgWeak100};
+    box-shadow: 0px 1px 2px 0px #E4E5E73D;
+  }
 `;
 
 export const InputNumber = styled(AntdInputNumber)`
@@ -32,4 +36,16 @@ export const InputNumber = styled(AntdInputNumber)`
 export const TextArea = styled(AntdInput.TextArea)`
   border: 1px solid ${({ theme }) => theme.colors.stroke.strokeSoft200} !important;
   border-radius: ${({ theme }) => theme.borderRadius * 2}px;
+  box-shadow: 0px 1px 2px 0px #E4E5E73D;
+  background: ${({ theme }) => theme.colors.background.bgWhite0};
+  &:hover {
+    background: ${({ theme }) => theme.colors.background.bgWeak100};
+    border: none;
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 3px #0A0D1433;
+    box-shadow: 0px 0px 0px 2px #FFFFFF;
+    box-shadow: 0px 0px 0px 1px #0A0D14;
+    box-shadow: 0px 1px 2px 0px #0A0D143D;
+  }
 `;

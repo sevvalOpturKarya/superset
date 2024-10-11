@@ -19,7 +19,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
 import { styled, t } from '@superset-ui/core';
-
+import systemImage from '../../assets/images/systems.png';
 import Button from 'src/components/Button';
 import Modal from 'src/components/Modal';
 import { Upload } from 'src/components';
@@ -95,6 +95,31 @@ const StyledInputContainer = styled.div`
     &[name='sqlalchemy_uri'] {
       margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     }
+  }
+  .ant-upload-list-item{
+    border: 1px solid #CDD0D5 !important;
+    background: #fff !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px;
+    height: auto !important;
+  }
+  .ant-upload-span::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url(${systemImage});
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+  }
+  .ant-upload-list-item:hover .ant-upload-list-item-info {
+    background-color: #fff !important;
+  }
+ 
+  .ant-upload-list-item-card-actions-btn {
+    opacity: 1;
   }
 `;
 

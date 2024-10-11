@@ -19,15 +19,15 @@
 
 import React, { FunctionComponent } from 'react';
 import { t, SupersetTheme } from '@superset-ui/core';
-
-import { getDatabaseDocumentationLinks } from 'src/views/CRUD/hooks';
+//getDatabaseDocumentationLink
+//import { getDatabaseDocumentationLinks } from 'src/views/CRUD/hooks';
 import Alert from 'src/components/Alert';
 import { antdWarningAlertStyles } from './styles';
 
-const supersetTextDocs = getDatabaseDocumentationLinks();
-export const DOCUMENTATION_LINK = supersetTextDocs
-  ? supersetTextDocs.support
-  : 'https://superset.apache.org/docs/databases/installing-database-drivers';
+// const supersetTextDocs = getDatabaseDocumentationLinks();
+// export const DOCUMENTATION_LINK = supersetTextDocs
+//   ? supersetTextDocs.support
+//   : 'https://superset.apache.org/docs/databases/installing-database-drivers';
 
 export interface IProps {
   errorMessage: string;
@@ -49,9 +49,10 @@ const ErrorAlert: FunctionComponent<IProps> = ({
         <>
           <br />
           {t(
-            'Database driver for importing maybe not installed. Visit the Superset documentation page for installation instructions: ',
+            'Database driver for importing maybe not installed.'
+            // 'Database driver for importing maybe not installed. Visit the Superset documentation page for installation instructions: ',
           )}
-          <a
+          {/* <a
             href={DOCUMENTATION_LINK}
             target="_blank"
             rel="noopener noreferrer"
@@ -59,7 +60,7 @@ const ErrorAlert: FunctionComponent<IProps> = ({
           >
             {t('here')}
           </a>
-          .
+          . */}
         </>
       ) : (
         ''

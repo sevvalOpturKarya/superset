@@ -18,6 +18,7 @@
  */
 import { FormItem } from 'src/components/Form';
 import { css, styled, SupersetTheme } from '@superset-ui/core';
+import systemImage from '../../../assets/images/systems.png';
 
 const MODAL_BODY_HEIGHT = 180.5;
 const antIconHeight = 12;
@@ -29,6 +30,59 @@ export const StyledFormItem = styled(FormItem)`
     margin-bottom: ${theme.gridUnit * 2.5}px;
   }
   `}
+  .ant-upload-list-item{
+    border: 1px solid #CDD0D5 !important;
+    background: #fff !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px;
+    height: auto !important;
+  }
+  .ant-upload-span::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url(${systemImage});
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+  }
+  .ant-upload-list-item:hover .ant-upload-list-item-info {
+    background-color: #fff !important;
+  }
+ 
+  .ant-upload-list-item-card-actions-btn {
+    opacity: 1;
+  }
+`;
+
+export const StyledUpload = styled.div`
+  .ant-upload-list-item{
+    border: 1px solid #CDD0D5 !important;
+    background: #fff !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px;
+    height: auto !important;
+  }
+  .ant-upload-span::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url(${systemImage});
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+  }
+  .ant-upload-list-item:hover .ant-upload-list-item-info {
+    background-color: #fff !important;
+  }
+ 
+  .ant-upload-list-item-card-actions-btn {
+    opacity: 1;
+  }
 `;
 
 export const StyledSwitchContainer = styled.div`

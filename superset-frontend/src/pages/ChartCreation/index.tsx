@@ -289,13 +289,13 @@ export class ChartCreation extends React.PureComponent<
 
   render() {
     const isButtonDisabled = this.isBtnDisabled();
-    const VIEW_INSTRUCTIONS_TEXT = t('view instructions');
-    const datasetHelpText = this.state.canCreateDataset ? (
-      <span data-test="dataset-write">
-        <Link to="/dataset/add/" data-test="add-chart-new-dataset">
-          {t('Add a dataset')}{' '}
-        </Link>
-        {t('or')}{' '}
+    //const VIEW_INSTRUCTIONS_TEXT = t('view instructions');
+    //const datasetHelpText = this.state.canCreateDataset ? (
+      //<span data-test="dataset-write">
+        //<Link to="/dataset/add/" data-test="add-chart-new-dataset">
+          //{t('Add a dataset')}{' '}
+        //</Link>
+        {/* {t('or')}{' '}
         <a
           href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
           rel="noopener noreferrer"
@@ -305,21 +305,21 @@ export class ChartCreation extends React.PureComponent<
           {`${VIEW_INSTRUCTIONS_TEXT} `}
           <i className="fa fa-external-link" />
         </a>
-        .
-      </span>
-    ) : (
-      <span data-test="no-dataset-write">
-        <a
-          href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {`${VIEW_INSTRUCTIONS_TEXT} `}
-          <i className="fa fa-external-link" />
-        </a>
-        .
-      </span>
-    );
+        . */}
+      //</span>
+    // ) : (
+    //   <span data-test="no-dataset-write">
+    //     <a
+    //       href="https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard/#registering-a-new-table"
+    //       rel="noopener noreferrer"
+    //       target="_blank"
+    //     >
+    //       {`${VIEW_INSTRUCTIONS_TEXT} `}
+    //       <i className="fa fa-external-link" />
+    //     </a>
+    //     .
+    //   </span>
+    //);
 
     return (
       <StyledContainer>
@@ -341,7 +341,12 @@ export class ChartCreation extends React.PureComponent<
                   showSearch
                   value={this.state.datasource}
                 />
-                {datasetHelpText}
+                {/* {datasetHelpText} */}
+                <span data-test="dataset-write">
+                  <Link to="/dataset/add/" data-test="add-chart-new-dataset">
+                    {t('Add a dataset')}{' '}
+                  </Link>
+                </span>
               </StyledStepDescription>
             }
           />

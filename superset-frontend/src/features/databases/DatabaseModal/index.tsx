@@ -1043,28 +1043,28 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
               {t(
                 'Any databases that allow connections via SQL Alchemy URIs can be added. ',
               )}
-              <a
+              {/* <a
                 href={connectionAlert?.ADD_DATABASE.contact_link}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {connectionAlert?.ADD_DATABASE.contact_description_link}
-              </a>{' '}
+              </a>{' '} */}
               {connectionAlert?.ADD_DATABASE.description}
             </>
           ) : (
             <>
               {t(
-                'Any databases that allow connections via SQL Alchemy URIs can be added. Learn about how to connect a database driver ',
+                'Any databases that allow connections via SQL Alchemy URIs can be added.',
               )}
-              <a
+              {/* <a
                 href={DOCUMENTATION_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {t('here')}
               </a>
-              .
+              . */}
             </>
           )
         }
@@ -1858,9 +1858,9 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                 description={
                   <>
                     {t(
-                      'Select databases require additional fields to be completed in the Advanced tab to successfully connect the database. Learn what requirements your databases has ',
+                      'Select databases require additional fields to be completed in the Advanced tab to successfully connect the database.',
                     )}
-                    <a
+                    {/* <a
                       href={DOCUMENTATION_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -1868,7 +1868,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
                     >
                       {t('here')}
                     </a>
-                    .
+                    . */}
                   </>
                 }
                 type="info"

@@ -34,7 +34,12 @@ const Collapse = Object.assign(
     <AntdCollapse {...props} />
   ))`
     .ant-collapse-item {
+        border: 1px solid  ${({ theme }) =>  theme.colors.stroke.strokeSoft200};
+        margin: 10px 0;
+        border-radius: 8px !important;
       .ant-collapse-header {
+        border-radius: 8px;
+        background:  ${({ theme }) =>  theme.colors.background.bgWhite0};
         font-weight: ${({ bold, theme }) =>
           bold
             ? theme.typography.weights.bold
@@ -71,9 +76,16 @@ const Collapse = Object.assign(
           `
             border-bottom: 1px solid ${theme.colors.grayscale.light3};
           `}
+        &:hover{
+          background: ${({ theme }) =>  theme.colors.background.bgWeak100};
+        }
       }
       .ant-collapse-content {
+        border-top: none;
+        border-radius: 8px;
         .ant-collapse-content-box {
+          border-radius: 8px;
+          background: ${({ theme }) =>  theme.colors.background.bgWeak100};
           .loading.inline {
             margin: ${({ theme }) => theme.gridUnit * 12}px auto;
             display: block;
@@ -83,6 +95,7 @@ const Collapse = Object.assign(
     }
     .ant-collapse-item-active {
       .ant-collapse-header {
+        background: ${({ theme }) =>  theme.colors.background.bgWeak100};
         ${({ expandIconPosition }) =>
           expandIconPosition &&
           expandIconPosition === 'right' &&

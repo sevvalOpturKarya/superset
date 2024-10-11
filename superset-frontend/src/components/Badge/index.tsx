@@ -23,19 +23,50 @@ import { BadgeProps as AntdBadgeProps } from 'antd/lib/badge';
 
 export interface BadgeProps extends AntdBadgeProps {
   textColor?: string;
+  themeType?: 'blue' | 'orange' | 'red' | 'green' | 'yellow' | 'gray';
 }
-
+const themeColors = {
+  blue: {
+    background: '#C2D6FF',
+    textColor: '#162264',
+  },
+  orange: {
+    background: '#FFDAC2',
+    textColor: '#6E330C',
+  },
+  red: {
+    background: '#F9C9D2',
+    textColor: '#710E21',
+  },
+  green: {
+    background: '#CBF5E5',
+    textColor: '#176448',
+  },
+  yellow: {
+    background: '#FBDFB1',
+    textColor: '#693D11',
+  },
+  gray: {
+    background: '#F6F8FA',
+    textColor: '#525866',
+  },
+};
 const Badge = styled(
   (
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    { textColor, color, text, ...props }: BadgeProps,
+    { textColor, color, text, themeType, ...props }: BadgeProps,
   ) => <AntdBadge text={text} color={text ? color : undefined} {...props} />,
 )`
   & > sup {
     padding: 0 ${({ theme }) => theme.gridUnit * 2}px;
-    background: ${({ theme, color }) => color || theme.colors.primary.base};
-    color: ${({ theme, textColor }) =>
-      textColor || theme.colors.grayscale.light5};
+    background: ${({ theme, color, themeType }) =>
+      themeType && themeColors[themeType]
+        ? themeColors[themeType].background
+        : color || theme.colors.primary.base};
+    color: ${({ theme, textColor, themeType }) =>
+      themeType && themeColors[themeType]
+        ? themeColors[themeType].textColor
+        : textColor || theme.colors.grayscale.light5};
   }
 `;
 

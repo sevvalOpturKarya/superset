@@ -20,6 +20,7 @@
 import { css, styled, SupersetTheme } from '@superset-ui/core';
 import { JsonEditor } from 'src/components/AsyncAceEditor';
 import Button from 'src/components/Button';
+import systemImage from '../../../assets/images/systems.png';
 
 const CTAS_CVAS_SCHEMA_FORM_HEIGHT = 108;
 const EXPOSE_IN_SQLLAB_FORM_HEIGHT = CTAS_CVAS_SCHEMA_FORM_HEIGHT + 153;
@@ -171,13 +172,13 @@ export const antDAlertStyles = (theme: SupersetTheme) => css`
   margin: ${theme.gridUnit * 4}px 0;
 
   .ant-alert-message {
-    color: ${theme.colors.info.dark2};
+    color: ${theme.colors.info.darker};
     font-size: ${theme.typography.sizes.m}px;
     font-weight: ${theme.typography.weights.bold};
   }
 
   .ant-alert-description {
-    color: ${theme.colors.info.dark2};
+    color: ${theme.colors.info.darker};
     font-size: ${theme.typography.sizes.m}px;
     line-height: ${theme.gridUnit * 5}px;
 
@@ -204,7 +205,7 @@ export const antDErrorAlertStyles = (theme: SupersetTheme) => css`
   border: ${theme.colors.error.base} 1px solid;
   padding: ${theme.gridUnit * 4}px;
   margin: ${theme.gridUnit * 8}px ${theme.gridUnit * 4}px;
-  color: ${theme.colors.error.dark2};
+  color: ${theme.colors.error.darker};
   .ant-alert-message {
     font-size: ${theme.typography.sizes.m}px;
     font-weight: ${theme.typography.weights.bold};
@@ -222,10 +223,10 @@ export const antDErrorAlertStyles = (theme: SupersetTheme) => css`
 `;
 
 export const antdWarningAlertStyles = (theme: SupersetTheme) => css`
-  border: 1px solid ${theme.colors.warning.light1};
+  border: 1px solid ${theme.colors.warning.lighter};
   padding: ${theme.gridUnit * 4}px;
   margin: ${theme.gridUnit * 4}px 0;
-  color: ${theme.colors.warning.dark2};
+  color: ${theme.colors.warning.darker};
 
   .ant-alert-message {
     margin: 0;
@@ -615,8 +616,29 @@ export const StyledUploadWrapper = styled.div`
   .ant-progress-inner {
     display: none;
   }
-
-  .ant-upload-list-item-card-actions {
-    display: none;
+  .ant-upload-list-item{
+    border: 1px solid #CDD0D5 !important;
+    background: #fff !important;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px;
+    height: auto !important;
+  }
+  .ant-upload-span::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    //background-image: url(${systemImage});
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+  }
+  .ant-upload-list-item:hover .ant-upload-list-item-info {
+    background-color: #fff !important;
+  }
+ 
+  .ant-upload-list-item-card-actions-btn {
+    opacity: 1;
   }
 `;

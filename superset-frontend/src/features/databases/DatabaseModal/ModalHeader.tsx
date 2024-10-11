@@ -18,7 +18,7 @@
  */
 
 import React from 'react';
-import { getDatabaseDocumentationLinks } from 'src/views/CRUD/hooks';
+//import { getDatabaseDocumentationLinks } from 'src/views/CRUD/hooks';
 import { UploadFile } from 'antd/lib/upload/interface';
 import { t } from '@superset-ui/core';
 import {
@@ -29,31 +29,31 @@ import {
 } from './styles';
 import { DatabaseForm, DatabaseObject } from '../types';
 
-const supersetTextDocs = getDatabaseDocumentationLinks();
+//const supersetTextDocs = getDatabaseDocumentationLinks();
 
-export const DOCUMENTATION_LINK = supersetTextDocs
-  ? supersetTextDocs.support
-  : 'https://superset.apache.org/docs/configuration/databases#installing-database-drivers';
+// export const DOCUMENTATION_LINK = supersetTextDocs
+//   ? supersetTextDocs.support
+//   : 'https://superset.apache.org/docs/configuration/databases#installing-database-drivers';
 
-const irregularDocumentationLinks = {
-  postgresql: 'https://superset.apache.org',
-  mssql: 'https://superset.apache.org/docs/databases/sql-server',
-  gsheets: 'https://superset.apache.org/docs/databases/google-sheets',
-};
+// const irregularDocumentationLinks = {
+//   postgresql: 'https://superset.apache.org',
+//   mssql: 'https://superset.apache.org/docs/databases/sql-server',
+//   gsheets: 'https://superset.apache.org/docs/databases/google-sheets',
+// };
 
-const documentationLink = (engine: string | undefined) => {
-  if (!engine) return null;
+// const documentationLink = (engine: string | undefined) => {
+//   if (!engine) return null;
 
-  if (supersetTextDocs) {
-    // override doc link for superset_txt yml
-    return supersetTextDocs[engine] || supersetTextDocs.default;
-  }
+//   if (supersetTextDocs) {
+//     // override doc link for superset_txt yml
+//     return supersetTextDocs[engine] || supersetTextDocs.default;
+//   }
 
-  if (!irregularDocumentationLinks[engine]) {
-    return `https://superset.apache.org/docs/databases/${engine}`;
-  }
-  return irregularDocumentationLinks[engine];
-};
+//   if (!irregularDocumentationLinks[engine]) {
+//     return `https://superset.apache.org/docs/databases/${engine}`;
+//   }
+//   return irregularDocumentationLinks[engine];
+// };
 
 const ModalHeader = ({
   isLoading,
@@ -96,7 +96,7 @@ const ModalHeader = ({
         })}
       </p>
       <h4>{t('Enter Primary Credentials')}</h4>
-      <p className="helper-bottom">
+      {/* <p className="helper-bottom">
         {t('Need help? Learn how to connect your database')}{' '}
         <a
           href={supersetTextDocs?.default || DOCUMENTATION_LINK}
@@ -106,7 +106,7 @@ const ModalHeader = ({
           {t('here')}
         </a>
         .
-      </p>
+      </p> */}
     </StyledFormHeader>
   );
 
@@ -142,7 +142,7 @@ const ModalHeader = ({
             dbModelName: dbModel.name,
           })}
         </h4>
-        <p className="helper-bottom">
+        {/* <p className="helper-bottom">
           {t('Need help? Learn more about')}{' '}
           <a
             href={documentationLink(db?.engine)}
@@ -151,7 +151,7 @@ const ModalHeader = ({
           >
             {t('connecting to %(dbModelName)s', { dbModelName: dbModel.name })}.
           </a>
-        </p>
+        </p> */}
       </StyledFormHeader>
     </StyledStickyHeader>
   );

@@ -775,7 +775,7 @@ function ChartList(props: ChartListProps) {
           <Icons.Import data-test="import-button" />
         </Tooltip>
       ),
-      buttonStyle: 'link',
+      buttonStyle: 'icon-buton',
       onClick: openChartImportModal,
     });
   }

@@ -33,6 +33,8 @@ const StyledCard = styled(AntdCard)`
   ${({ theme }) => `
     border: 1px solid ${theme.colors.grayscale.light2};
     border-radius: ${theme.gridUnit}px;
+    box-shadow: 0px 2px 20px 0px #1B1C1D0A;
+    border-radius: 10px;
     overflow: hidden;
 
     .ant-card-body {
@@ -47,6 +49,7 @@ const StyledCard = styled(AntdCard)`
       height: 100%;
     }
     &:hover {
+      border: 1px solid ${theme.colors.primary.base};
       box-shadow: 8px 8px 28px 0px ${theme.colors.grayscale.light1};
       transition: box-shadow ${theme.transitionTiming}s ease-in-out;
 
@@ -54,6 +57,11 @@ const StyledCard = styled(AntdCard)`
         transform: translateY(0);
       }
     }
+    &:focus {
+      border: 1px solid ${theme.colors.primary.base};
+      box-shadow: 0px 0px 0px 3px #F800B51A;
+      transition: box-shadow ${theme.transitionTiming}s ease-in-out;
+    } 
   `}
 `;
 
